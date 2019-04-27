@@ -55,20 +55,12 @@ public class CustomerJsonRepresentation implements Serializable {
     this.email = email;
   }
 
-  @Override
-  public String toString() {
-    return "CustomerJsonRepresentation{"
-        + "id="
-        + id
-        + ", name='"
-        + name
-        + '\''
-        + ", phoneNumber='"
-        + phoneNumber
-        + '\''
-        + ", email='"
-        + email
-        + '\''
-        + '}';
+  @Override public String toString() {
+    return "CustomerJsonRepresentation{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", phoneNumber='" + phoneNumber + '\'' +
+        ", email='" + email + '\'' +
+        '}';
   }
 }

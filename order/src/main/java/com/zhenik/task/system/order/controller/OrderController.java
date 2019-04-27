@@ -3,6 +3,7 @@ package com.zhenik.task.system.order.controller;
 import com.zhenik.task.system.order.domain.representation.OrderJsonRepresentation;
 import com.zhenik.task.system.order.service.OrderService;
 import java.util.List;
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,22 +30,24 @@ public class OrderController {
     this.orderService = orderService;
   }
 
-  @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<OrderJsonRepresentation>> getOrders() {
     return ResponseEntity.ok(orderService.getOrders());
   }
 
-  @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE, path = "/{id}")
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
   public ResponseEntity<OrderJsonRepresentation> getOrder(@PathVariable("id") Long id) {
     try {
       OrderJsonRepresentation orderRepresentation = orderService.getOrder(id);
       return ResponseEntity.ok(orderRepresentation);
     } catch (IllegalArgumentException e) {
       return ResponseEntity.badRequest().build();
+    } catch (EntityNotFoundException e) {
+      return ResponseEntity.notFound().build();
     }
   }
 
-  @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Long> placeOrder(
       @RequestBody OrderJsonRepresentation orderJsonRepresentation) {
     if (orderJsonRepresentation.getId() != null) {
@@ -63,7 +66,7 @@ public class OrderController {
     }
   }
 
-  @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, path = "/{id}")
+  @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
   public ResponseEntity updateOrder(
       @PathVariable("id") Long id, @RequestBody OrderJsonRepresentation orderJsonRepresentation) {
 
