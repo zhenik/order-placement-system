@@ -6,12 +6,12 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
     classes = CustomerApplication.class,
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class CCTestBase {
-  private Logger LOG = Logger.getLogger(CCTestBase.class.getCanonicalName());
+  private Logger LOG = LoggerFactory.getLogger(CCTestBase.class.getCanonicalName());
 
   @LocalServerPort protected int port = 0;
 
@@ -29,7 +29,7 @@ public abstract class CCTestBase {
   @After
   public void clean() {
 
-    LOG.log(Level.INFO, String.valueOf(port));
+    LOG.info("Application test port {}", port);
 
     // RestAssured configs shared by all the tests
     RestAssured.baseURI = "http://localhost";

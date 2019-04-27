@@ -25,13 +25,13 @@ public class CustomerController {
     this.customerService = customerService;
   }
 
-  @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<CustomerJsonRepresentation>> getCustomers() {
     return ResponseEntity.ok(customerService.getCustomers());
   }
 
   @GetMapping(
-      produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+      produces = MediaType.APPLICATION_JSON_VALUE,
       path = "/{id}"
   )
   public ResponseEntity<CustomerJsonRepresentation> getCustomer(@PathVariable("id") Long id) {
@@ -44,7 +44,7 @@ public class CustomerController {
 
   }
 
-  @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Long> registerNewCustomer(
       @RequestBody CustomerJsonRepresentation customerJsonRepresentation) {
 
