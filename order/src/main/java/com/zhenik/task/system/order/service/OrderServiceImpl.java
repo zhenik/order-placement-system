@@ -48,4 +48,18 @@ public class OrderServiceImpl implements OrderService {
       throw new IllegalArgumentException("Customer with id "+orderJsonRepresentation.getCustomerId()+" does not exist");
     }
   }
+
+  @Override public boolean updateOrder(Long id, OrderJsonRepresentation orderJsonRepresentation) {
+    // validation: if customer updated
+    boolean customerExist = customerClient.isCustomerExist(orderJsonRepresentation.getCustomerId());
+
+    if (customerExist) {
+      long timestamp = Instant.now().toEpochMilli();
+      orderJsonRepresentation.setUpdateDate(timestamp);
+      Order order = converter.transform(orderJsonRepresentation);
+      return repository.updateOrder(id, order);
+    } else {
+      throw new IllegalArgumentException("Customer with id "+orderJsonRepresentation.getCustomerId()+" does not exist");
+    }
+  }
 }

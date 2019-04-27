@@ -4,4 +4,5 @@ import com.zhenik.task.system.order.domain.model.Order;
 
 public interface OrderRepositoryCustom {
   Long createOrder(Order customer);
+  boolean updateOrder(Long id, Order order);
 }

@@ -9,4 +9,5 @@ public interface OrderService {
   List<OrderJsonRepresentation> getOrders();
   OrderJsonRepresentation getOrder(Long id);
   Long placeOrder(OrderJsonRepresentation orderJsonRepresentation);
+  boolean updateOrder(Long id, OrderJsonRepresentation orderJsonRepresentation);
 }

@@ -17,4 +17,22 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
     em.persist(order);
     return order.getId();
   }
+
+  @Override public boolean updateOrder(Long id, Order order) {
+    Order orderPersisted = em.find(Order.class, id);
+    if (orderPersisted!=null){
+      // not order id
+      // not creation date
+      orderPersisted.setCustomerId(order.getCustomerId());
+      orderPersisted.setAddressFrom(order.getAddressFrom());
+      orderPersisted.setAddressTo(order.getAddressTo());
+      orderPersisted.setUpdateDate(order.getUpdateDate());
+      orderPersisted.setService(order.getService());
+      orderPersisted.setNote(order.getNote());
+      return true;
+    } else {
+      return false;
+    }
+
+  }
 }
