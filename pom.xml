@@ -31,6 +31,8 @@
     <spring-boot.version>1.5.7.RELEASE</spring-boot.version>
     <h2.version>1.4.196</h2.version>
     <postgres.version>42.1.4</postgres.version>
+    <junit.version>4.12</junit.version>
+    <rest-assured.version>3.0.1</rest-assured.version>
   </properties>
 
   <dependencyManagement>
@@ -57,7 +59,47 @@
         <artifactId>postgresql</artifactId>
         <version>${postgres.version}</version>
       </dependency>
+
+      <!--test-->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <version>${spring-boot.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>${rest-assured.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <!-- Need to create self-executable uber/fat jars -->
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 </project>

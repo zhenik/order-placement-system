@@ -4,13 +4,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "customers")
 public class Customer {
-  @Id @GeneratedValue private Long id;
+  @Id @GeneratedValue
+  private Long id;
+  @NotNull
   private String name;
+  @NotNull
+  @Pattern(regexp = "^[0-9()-]+$")
   private String phoneNumber;
+  // https://stackoverflow.com/a/46181
+  @Pattern(
+      regexp =
+          "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$")
   private String email;
 
   public Customer() {}

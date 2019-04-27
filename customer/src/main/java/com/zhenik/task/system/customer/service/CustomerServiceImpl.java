@@ -21,4 +21,19 @@ public class CustomerServiceImpl implements CustomerService {
   public List<CustomerJsonRepresentation> getCustomers() {
     return converter.transform(repository.findAll());
   }
+
+  @Override
+  public Long registerCustomer(CustomerJsonRepresentation customerJsonRepresentation) {
+    return repository.createCustomer(converter.transform(customerJsonRepresentation));
+  }
+
+  @Override
+  public Boolean deleteCustomer(Long id) {
+    if (repository.exists(id)) {
+      repository.delete(id);
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -12,7 +12,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@EnableJpaRepositories(basePackages = ("com.zhenik.task.system.customer"))
+@EnableJpaRepositories(basePackages = ("com.zhenik.task.system.customer.repository"))
 @EntityScan(basePackages = ("com.zhenik.task.system.customer"))
 public class CustomerApplicationConfig {
 

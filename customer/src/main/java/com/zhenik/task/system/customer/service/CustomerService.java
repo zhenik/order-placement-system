@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CustomerService {
   List<CustomerJsonRepresentation> getCustomers();
+  Long registerCustomer(CustomerJsonRepresentation customerJsonRepresentation);
+  Boolean deleteCustomer(Long id);
 }
