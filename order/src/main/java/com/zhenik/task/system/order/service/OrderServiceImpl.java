@@ -27,6 +27,15 @@ public class OrderServiceImpl implements OrderService {
     return converter.transform(repository.findAll());
   }
 
+  @Override public OrderJsonRepresentation getOrder(Long id) {
+    Order order = repository.getOne(id);
+    if (order!=null){
+      return converter.transform(order);
+    } else {
+      throw new IllegalArgumentException("Order with id" + id + " does not exist" );
+    }
+  }
+
   @Override public Long placeOrder(OrderJsonRepresentation orderJsonRepresentation) {
     boolean customerExist = customerClient.isCustomerExist(orderJsonRepresentation.getCustomerId());
     if (customerExist) {

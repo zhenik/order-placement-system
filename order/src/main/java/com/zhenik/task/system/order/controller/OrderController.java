@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,18 +32,31 @@ public class OrderController {
     return ResponseEntity.ok(orderService.getOrders());
   }
 
+  @GetMapping(
+      produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+      path = "/{id}"
+  )
+  public ResponseEntity<OrderJsonRepresentation> getOrder(@PathVariable("id") Long id) {
+    try {
+      OrderJsonRepresentation orderRepresentation = orderService.getOrder(id);
+      return ResponseEntity.ok(orderRepresentation);
+    } catch (IllegalArgumentException e){
+      return ResponseEntity.badRequest().build();
+    }
+  }
+
   @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Long> placeOrder(@RequestBody OrderJsonRepresentation orderJsonRepresentation) {
     if (orderJsonRepresentation.getId() != null) {
       LOG.warn("Order id is present: {}", orderJsonRepresentation.getId());
-      return ResponseEntity.status(400).build();
+      return ResponseEntity.badRequest().build();
     }
     try {
       Long id = orderService.placeOrder(orderJsonRepresentation);
       return ResponseEntity.status(201).body(id);
     } catch (ConstraintViolationException | IllegalArgumentException e) {
       LOG.error("Fail: {}",e.toString());
-      return ResponseEntity.status(400).build();
+      return ResponseEntity.badRequest().build();
     }
   }
 

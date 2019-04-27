@@ -7,5 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface OrderService {
   List<OrderJsonRepresentation> getOrders();
+  OrderJsonRepresentation getOrder(Long id);
   Long placeOrder(OrderJsonRepresentation orderJsonRepresentation);
 }
