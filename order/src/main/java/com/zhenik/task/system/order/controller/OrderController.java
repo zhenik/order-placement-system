@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,6 +82,15 @@ public class OrderController {
       }
     } catch (ConstraintViolationException | IllegalArgumentException e) {
       LOG.error("Fail: {}", e.toString());
+      return ResponseEntity.badRequest().build();
+    }
+  }
+
+  @DeleteMapping(path = "/{id}")
+  public ResponseEntity deleteOrder(@PathVariable("id") Long id) {
+    if (orderService.deleteOrder(id)) {
+      return ResponseEntity.noContent().build();
+    } else {
       return ResponseEntity.badRequest().build();
     }
   }

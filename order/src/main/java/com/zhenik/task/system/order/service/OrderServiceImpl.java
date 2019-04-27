@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     }
   }
 
-  @Override public boolean updateOrder(Long id, OrderJsonRepresentation orderJsonRepresentation) {
+  @Override public Boolean updateOrder(Long id, OrderJsonRepresentation orderJsonRepresentation) {
     // validation: if customer updated
     boolean customerExist = customerClient.isCustomerExist(orderJsonRepresentation.getCustomerId());
 
@@ -60,6 +60,15 @@ public class OrderServiceImpl implements OrderService {
       return repository.updateOrder(id, order);
     } else {
       throw new IllegalArgumentException("Customer with id "+orderJsonRepresentation.getCustomerId()+" does not exist");
+    }
+  }
+
+  @Override public Boolean deleteOrder(Long id) {
+    if (repository.exists(id)) {
+      repository.delete(id);
+      return true;
+    } else {
+      return false;
     }
   }
 }
