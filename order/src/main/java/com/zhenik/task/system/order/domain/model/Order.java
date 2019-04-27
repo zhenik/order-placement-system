@@ -16,22 +16,40 @@ public class Order {
   @NotNull private String service;
   @NotNull private Long creationDate;
   @NotNull private Long updateDate;
+  @NotNull private Long serviceEventDate;
   private String note;
 
   public Order() {}
 
-  public Order(Long customerId, String addressFrom, String addressTo, String service,
-      Long creationDate, Long updateDate, String note) {
+  public Order(
+      Long customerId,
+      String addressFrom,
+      String addressTo,
+      String service,
+      Long creationDate,
+      Long updateDate,
+      Long serviceEventDate,
+      String note) {
     this.customerId = customerId;
     this.addressFrom = addressFrom;
     this.addressTo = addressTo;
     this.service = service;
     this.creationDate = creationDate;
     this.updateDate = updateDate;
+    this.serviceEventDate = serviceEventDate;
     this.note = note;
   }
-  public Order(Long id, Long customerId, String addressFrom, String addressTo, String service,
-      Long creationDate, Long updateDate, String note) {
+
+  public Order(
+      Long id,
+      Long customerId,
+      String addressFrom,
+      String addressTo,
+      String service,
+      Long creationDate,
+      Long updateDate,
+      Long serviceEventDate,
+      String note) {
     this.id = id;
     this.customerId = customerId;
     this.addressFrom = addressFrom;
@@ -39,9 +57,9 @@ public class Order {
     this.service = service;
     this.creationDate = creationDate;
     this.updateDate = updateDate;
+    this.serviceEventDate = serviceEventDate;
     this.note = note;
   }
-
 
   public Long getId() {
     return id;
@@ -107,6 +125,14 @@ public class Order {
     this.note = note;
   }
 
+  public Long getServiceEventDate() {
+    return serviceEventDate;
+  }
+
+  public void setServiceEventDate(Long serviceEventDate) {
+    this.serviceEventDate = serviceEventDate;
+  }
+
   @Override public String toString() {
     return "Order{" +
         "id=" + id +
@@ -116,6 +142,7 @@ public class Order {
         ", service='" + service + '\'' +
         ", creationDate=" + creationDate +
         ", updateDate=" + updateDate +
+        ", serviceEventDate=" + serviceEventDate +
         ", note='" + note + '\'' +
         '}';
   }

@@ -17,8 +17,8 @@ public class OrderRepresentationConverter {
         order.getService(),
         order.getCreationDate(),
         order.getUpdateDate(),
-        order.getNote()
-    );
+        order.getServiceEventDate(),
+        order.getNote());
   }
 
   public List<OrderJsonRepresentation> transform(List<Order> orderList) {
@@ -34,7 +34,7 @@ public class OrderRepresentationConverter {
         orderJsonRepresentation.getService(),
         orderJsonRepresentation.getCreationDate(),
         orderJsonRepresentation.getUpdateDate(),
-        orderJsonRepresentation.getNote()
-    );
+        orderJsonRepresentation.getServiceEventDate(),
+        orderJsonRepresentation.getNote());
   }
 }

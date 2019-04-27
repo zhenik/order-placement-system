@@ -10,11 +10,12 @@ public class OrderJsonRepresentation implements Serializable {
   private String service;
   private Long creationDate;
   private Long updateDate;
+  private Long serviceEventDate;
   private String note;
 
   public OrderJsonRepresentation() { }
   public OrderJsonRepresentation(Long id, Long customerId, String addressFrom,
-      String addressTo, String service, Long creationDate, Long updateDate, String note) {
+      String addressTo, String service, Long creationDate, Long updateDate, Long serviceEventDate, String note) {
     this.id = id;
     this.customerId = customerId;
     this.addressFrom = addressFrom;
@@ -22,16 +23,18 @@ public class OrderJsonRepresentation implements Serializable {
     this.service = service;
     this.creationDate = creationDate;
     this.updateDate = updateDate;
+    this.serviceEventDate = serviceEventDate;
     this.note = note;
   }
   public OrderJsonRepresentation(Long customerId, String addressFrom, String addressTo,
-      String service, Long creationDate, Long updateDate, String note) {
+      String service, Long creationDate, Long updateDate, Long serviceEventDate, String note) {
     this.customerId = customerId;
     this.addressFrom = addressFrom;
     this.addressTo = addressTo;
     this.service = service;
     this.creationDate = creationDate;
     this.updateDate = updateDate;
+    this.serviceEventDate = serviceEventDate;
     this.note = note;
   }
 
@@ -99,6 +102,14 @@ public class OrderJsonRepresentation implements Serializable {
     this.note = note;
   }
 
+  public Long getServiceEventDate() {
+    return serviceEventDate;
+  }
+
+  public void setServiceEventDate(Long serviceEventDate) {
+    this.serviceEventDate = serviceEventDate;
+  }
+
   @Override public String toString() {
     return "OrderJsonRepresentation{" +
         "id=" + id +
@@ -108,6 +119,7 @@ public class OrderJsonRepresentation implements Serializable {
         ", service='" + service + '\'' +
         ", creationDate=" + creationDate +
         ", updateDate=" + updateDate +
+        ", serviceEventDate=" + serviceEventDate +
         ", note='" + note + '\'' +
         '}';
   }

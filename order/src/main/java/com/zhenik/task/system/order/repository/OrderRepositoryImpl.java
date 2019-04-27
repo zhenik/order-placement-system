@@ -1,6 +1,7 @@
 package com.zhenik.task.system.order.repository;
 
 import com.zhenik.task.system.order.domain.model.Order;
+import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -23,16 +24,17 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
     if (orderPersisted!=null){
       // not order id
       // not creation date
-      orderPersisted.setCustomerId(order.getCustomerId());
-      orderPersisted.setAddressFrom(order.getAddressFrom());
-      orderPersisted.setAddressTo(order.getAddressTo());
-      orderPersisted.setUpdateDate(order.getUpdateDate());
-      orderPersisted.setService(order.getService());
-      orderPersisted.setNote(order.getNote());
+      orderPersisted.setCustomerId(Optional.ofNullable(order.getCustomerId()).orElse(orderPersisted.getCustomerId()));
+      orderPersisted.setAddressFrom(Optional.ofNullable(order.getAddressFrom()).orElse(orderPersisted.getAddressFrom()));
+      orderPersisted.setAddressTo(Optional.ofNullable(order.getAddressTo()).orElse(orderPersisted.getAddressTo()));
+      orderPersisted.setUpdateDate(Optional.ofNullable(order.getUpdateDate()).orElse(orderPersisted.getUpdateDate()));
+      orderPersisted.setServiceEventDate(Optional.ofNullable(order.getServiceEventDate()).orElse(orderPersisted.getServiceEventDate()));
+      orderPersisted.setService(Optional.ofNullable(order.getService()).orElse(orderPersisted.getService()));
+      orderPersisted.setNote(Optional.ofNullable(order.getNote()).orElse(orderPersisted.getNote()));
       return true;
     } else {
       return false;
     }
-
   }
+
 }
