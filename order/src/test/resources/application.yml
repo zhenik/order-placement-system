@@ -1,0 +1,4 @@
+server:
+  port: 8081
+customer:
+  uri: http://localhost:11111
