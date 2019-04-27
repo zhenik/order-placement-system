@@ -30,6 +30,20 @@ public class CustomerController {
     return ResponseEntity.ok(customerService.getCustomers());
   }
 
+  @GetMapping(
+      produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+      path = "/{id}"
+  )
+  public ResponseEntity<CustomerJsonRepresentation> getCustomer(@PathVariable("id") Long id) {
+    try {
+     CustomerJsonRepresentation customer = customerService.getCustomer(id);
+     return ResponseEntity.ok().body(customer);
+    } catch (IllegalArgumentException exception) {
+      return ResponseEntity.status(400).build();
+    }
+
+  }
+
   @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Long> registerNewCustomer(
       @RequestBody CustomerJsonRepresentation customerJsonRepresentation) {
