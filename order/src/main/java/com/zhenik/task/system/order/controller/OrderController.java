@@ -1,9 +1,7 @@
 package com.zhenik.task.system.order.controller;
 
-import com.zhenik.task.system.order.domain.converter.OrderRepresentationConverter;
 import com.zhenik.task.system.order.domain.representation.OrderJsonRepresentation;
-import com.zhenik.task.system.order.domain.model.Order;
-import com.zhenik.task.system.order.repository.OrderRepository;
+import com.zhenik.task.system.order.service.OrderService;
 import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Validated
 public class OrderController {
-  private final OrderRepository repository;
-  private OrderRepresentationConverter converter;
+  private final OrderService orderService;
 
-  public OrderController(OrderRepository repository, OrderRepresentationConverter converter) {
-    this.repository = repository;
-    this.converter = converter;
+  public OrderController(OrderService orderService) {
+    this.orderService = orderService;
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-  public ResponseEntity<List<OrderJsonRepresentation>> getItems() {
-    final List<Order> orders = repository.findAll();
-    final List<OrderJsonRepresentation> jsonItems = converter.transform(orders);
-    return ResponseEntity.ok(jsonItems);
+  public ResponseEntity<List<OrderJsonRepresentation>> getOrders() {
+    return ResponseEntity.ok(orderService.getOrders());
   }
 
 }

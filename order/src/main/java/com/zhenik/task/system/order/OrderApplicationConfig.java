@@ -12,8 +12,8 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@EnableJpaRepositories(basePackages = ("com.zhenik.task.system.item"))
-@EntityScan(basePackages = ("com.zhenik.task.system.item"))
+@EnableJpaRepositories(basePackages = ("com.zhenik.task.system.order"))
+@EntityScan(basePackages = ("com.zhenik.task.system.order"))
 public class OrderApplicationConfig {
 
   @Bean(name = "OBJECT_MAPPER_BEAN")
