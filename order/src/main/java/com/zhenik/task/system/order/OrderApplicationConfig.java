@@ -3,6 +3,7 @@ package com.zhenik.task.system.order;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,9 @@ import org.springframework.web.client.RestTemplate;
 @EntityScan(basePackages = ("com.zhenik.task.system.order"))
 public class OrderApplicationConfig {
 
+  @Value(value = "${customer.uri}")
+  private String baseCustomerUrl;
+
   @Bean(name = "OBJECT_MAPPER_BEAN")
   public ObjectMapper jsonObjectMapper() {
     return Jackson2ObjectMapperBuilder.json()
@@ -27,5 +31,10 @@ public class OrderApplicationConfig {
   @Bean
   public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder)  {
     return restTemplateBuilder.build();
+  }
+
+  @Bean
+  public String getBaseCustomerUrl() {
+    return baseCustomerUrl;
   }
 }
