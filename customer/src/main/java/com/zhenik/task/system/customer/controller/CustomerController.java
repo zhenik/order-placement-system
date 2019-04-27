@@ -39,7 +39,7 @@ public class CustomerController {
      CustomerJsonRepresentation customer = customerService.getCustomer(id);
      return ResponseEntity.ok().body(customer);
     } catch (IllegalArgumentException exception) {
-      return ResponseEntity.status(400).build();
+      return ResponseEntity.badRequest().build();
     }
 
   }
@@ -49,13 +49,13 @@ public class CustomerController {
       @RequestBody CustomerJsonRepresentation customerJsonRepresentation) {
 
     if (customerJsonRepresentation.getId() != null) {
-      return ResponseEntity.status(400).build();
+      return ResponseEntity.badRequest().build();
     }
     try {
       Long id = customerService.registerCustomer(customerJsonRepresentation);
       return ResponseEntity.status(201).body(id);
     } catch (ConstraintViolationException e){
-      return ResponseEntity.status(400).build();
+      return ResponseEntity.badRequest().build();
     }
   }
 
