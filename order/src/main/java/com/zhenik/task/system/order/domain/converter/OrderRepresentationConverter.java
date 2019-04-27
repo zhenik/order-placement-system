@@ -16,7 +16,11 @@ public class OrderRepresentationConverter {
     return orderList.stream().map(this::transform).collect(Collectors.toList());
   }
 
-  public Order transform(OrderJsonRepresentation json) {
-    return new Order(json.getId(), json.getName(), json.getDescription());
+  public Order transform(OrderJsonRepresentation orderJsonRepresentation) {
+    return new Order(
+        orderJsonRepresentation.getId(),
+        orderJsonRepresentation.getName(),
+        orderJsonRepresentation.getDescription()
+    );
   }
 }
