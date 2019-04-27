@@ -9,7 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderRepresentationConverter {
   public OrderJsonRepresentation transform(Order order) {
-    return new OrderJsonRepresentation(order.getId(), order.getName(), order.getDescription());
+    return new OrderJsonRepresentation(
+        order.getId(),
+        order.getCustomerId(),
+        order.getAddressFrom(),
+        order.getAddressTo(),
+        order.getService(),
+        order.getCreationDate(),
+        order.getUpdateDate(),
+        order.getNote()
+    );
   }
 
   public List<OrderJsonRepresentation> transform(List<Order> orderList) {
@@ -19,8 +28,13 @@ public class OrderRepresentationConverter {
   public Order transform(OrderJsonRepresentation orderJsonRepresentation) {
     return new Order(
         orderJsonRepresentation.getId(),
-        orderJsonRepresentation.getName(),
-        orderJsonRepresentation.getDescription()
+        orderJsonRepresentation.getCustomerId(),
+        orderJsonRepresentation.getAddressFrom(),
+        orderJsonRepresentation.getAddressTo(),
+        orderJsonRepresentation.getService(),
+        orderJsonRepresentation.getCreationDate(),
+        orderJsonRepresentation.getUpdateDate(),
+        orderJsonRepresentation.getNote()
     );
   }
 }
