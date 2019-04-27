@@ -23,7 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public abstract class CCTestBase {
   private Logger LOG = Logger.getLogger(CCTestBase.class.getCanonicalName());
 
-  @LocalServerPort protected int port = 8081;
+  @LocalServerPort protected int port = 0;
 
   @Before
   @After
