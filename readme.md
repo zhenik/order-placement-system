@@ -1,3 +1,5 @@
+[![Build Status](https://www.travis-ci.org/zhenik/order-placement-system.svg?branch=master)](https://www.travis-ci.org/zhenik/order-placement-system)
+
 # Order placement system - tech task
 ## Design[diagram]
 // todo
