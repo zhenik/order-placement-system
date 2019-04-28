@@ -34,6 +34,7 @@
     <junit.version>4.12</junit.version>
     <rest-assured.version>3.0.1</rest-assured.version>
     <wiremock.version>2.2.1</wiremock.version>
+    <swagger.version>2.9.2</swagger.version>
   </properties>
 
   <dependencyManagement>
@@ -61,6 +62,17 @@
         <version>${postgres.version}</version>
       </dependency>
 
+      <!--swagger doc & ui-->
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
       <!--test-->
       <dependency>
         <groupId>junit</groupId>
