@@ -78,6 +78,18 @@
         <artifactId>springfox-swagger-ui</artifactId>
         <version>${swagger.version}</version>
       </dependency>
+
+      <!--tracing-->
+      <dependency>
+        <groupId>io.opentracing.contrib</groupId>
+        <artifactId>opentracing-spring-web-autoconfigure</artifactId>
+        <version>0.0.10</version>
+      </dependency>
+      <dependency>
+        <groupId>com.uber.jaeger</groupId>
+        <artifactId>jaeger-core</artifactId>
+        <version>0.20.0</version>
+      </dependency>
       <!--test-->
       <dependency>
         <groupId>junit</groupId>
