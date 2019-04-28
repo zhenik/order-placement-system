@@ -9,6 +9,7 @@ services:
     build:
       context: customer
       dockerfile: Dockerfile
+    image: zhenik/inmt-customer:${TAG}
     ports:
       - 9082:8080
     depends_on:
@@ -18,6 +19,7 @@ services:
     build:
       context: order
       dockerfile: Dockerfile
+    image: zhenik/inmt-order:${TAG}
     ports:
       - 9081:8080
     depends_on:
