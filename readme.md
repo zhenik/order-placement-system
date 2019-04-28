@@ -3,10 +3,16 @@
 # Order placement system - tech task
 ## Design[diagram]
 // todo
-## Build
-build: `./mvnw clean install -DskipIntegrationTests=false`  
+## How to run
+| cmd                   | description                       | 
+| -------------         |:-------------:                    |
+| make                  | build project                     |
+| make build            | build project & docker images     |
+| make e2e-tests        | run end to end tests with docker  |
+| make run              | run application with docker       |
+| make down             | down application with docker      |
 
-only IT: `./mvnw clean install -pl e2e -DskipIntegrationTests=false`
+
 ## Todo
 - [x] test:
   - [x] restAssured
@@ -16,7 +22,7 @@ only IT: `./mvnw clean install -pl e2e -DskipIntegrationTests=false`
 - [x] docker
 - [x] CI
 - [ ] CD
-- [ ] automate with Makefile
+- [x] automate with Makefile
 - [x] swagger doc
 - [ ] tracing
 - [ ] monitoring

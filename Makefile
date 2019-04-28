@@ -1,5 +1,5 @@
 .PHONY: all
-all: build
+all: build-source
 
 MAVEN := './mvnw'
 VERSION := '1.0-SNAPSHOT'
@@ -16,7 +16,7 @@ build-source-no-tests:
 	${MAVEN} clean install -DskipTests
 
 .PHONY: e2e-tests
-e2e-tests:
+e2e-tests: build-source-no-tests build-docker
 	${MAVEN} clean install -pl e2e -DskipIntegrationTests=false
 
 .PHONY: build-docker
