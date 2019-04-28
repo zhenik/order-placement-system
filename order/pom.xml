@@ -37,10 +37,10 @@
       <artifactId>springfox-swagger-ui</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>io.opentracing.contrib</groupId>
-      <artifactId>opentracing-spring-web-autoconfigure</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.opentracing.contrib</groupId>-->
+<!--      <artifactId>opentracing-spring-web-autoconfigure</artifactId>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>com.uber.jaeger</groupId>
       <artifactId>jaeger-core</artifactId>

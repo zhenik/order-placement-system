@@ -79,7 +79,7 @@ public class OrderApplicationConfig {
   }
 
   @Bean
-  @Profile("!docker")
+  @Profile("default")
   public io.opentracing.Tracer jaegerTracerDefault() {
     return new com.uber.jaeger.Configuration(
             "order-service",
