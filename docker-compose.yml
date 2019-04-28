@@ -2,6 +2,8 @@ version: '3.3'
 services:
   postgres-customer:
     image: "postgres:10"
+  postgres-order:
+    image: "postgres:10"
 
   customer-server:
     build:
@@ -11,3 +13,13 @@ services:
       - 9082:8080
     depends_on:
       - postgres-customer
+
+  order-server:
+    build:
+      context: order
+      dockerfile: Dockerfile
+    ports:
+      - 9081:8080
+    depends_on:
+      - postgres-order
+      - customer-server
