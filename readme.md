@@ -3,16 +3,21 @@
 # Order placement system - tech task
 ## Design[diagram]
 // todo
+## Build
+build: `./mvnw clean install -DskipIntegrationTests=false`  
+
+only IT: `./mvnw clean install -pl e2e -DskipIntegrationTests=false`
 ## Todo
-- [ ] test:
+- [x] test:
   - [x] restAssured
   - [x] wireMock
-  - [ ] coverage 
-  - [ ] e2e 'testcontainers'
-- [ ] docker
-- [ ] CD/CI
+  - [x] coverage 
+  - [x] e2e 'testcontainers'
+- [x] docker
+- [x] CI
+- [ ] CD
 - [ ] automate with Makefile
-- [ ] swagger doc
+- [x] swagger doc
 - [ ] tracing
 - [ ] monitoring
 
